@@ -1,8 +1,3 @@
-#PROVIDERS
-provider "aws" {
-  region = "us-east-2"
-}
-
 #RESOURCES
 resource "aws_instance" "example" {
   ami                    = "ami-0fb653ca2d3203ac1"
@@ -30,22 +25,4 @@ resource "aws_security_group" "instance" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-#INPUT VARIABLES
-variable "security_group_name" {
-  description = "The name of the security group"
-  type        = string
-  default     = "terraform-example-instance"
-}
-variable "server_port" {
-  description = "The port the server will use for HTTP requests"
-  type        = number
-  default     = 8080
-}
-
-#OUTPUT VARIABLES
-output "public_ip" {
-  value       = aws_instance.example.public_ip
-  description = "The public IP of the Instance"
 }
